@@ -1,0 +1,64 @@
+<!-- /*
+* Bootstrap 5
+* Template Name: Furni
+* Template Author: Untree.co
+* Template URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Exam{% endblock title %}
+
+
+{% block hero_img_wrap %}
+<img src="{% static 'images/person_2.jpg' %}" class="img-fluid">
+{% endblock %}
+
+{% block content %}
+
+	<h2 class="section-title">Salom bu imtihon proyekt</h2>
+
+		<!-- Start Product Section -->
+		<div class="product-section">
+			<div class="container">
+				<div class="row">
+
+					<!-- Start Column 2 -->
+                    {% for product in products %}
+					<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+						<a class="product-item" href="/cart">
+							<img src="{{ product.images.url }}" class="img-fluid product-thumbnail">
+							<h3 class="product-title">{{ product.name }}</h3>
+							<strong class="product-price">{{ product.price }}</strong>
+
+							<span class="icon-cross">
+								<img src="{% static 'images/cross.svg' %}" class="img-fluid">
+							</span>
+						</a>
+					</div>
+                    {% endfor %}
+<!--		-->
+		<div class="container">
+        {% if messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <label for="Text">Text</label>
+            <input class="text" type="text" name="text" id="text" placeholder="Text"><br>
+            <label for="last_name">Last name</label>
+            <input class="form-control" type="text" name="last_name" id="last_name" placeholder="Last name"><br>
+            <label for="email">Email</label>
+            <button type="submit">OK</button>
+            <br/>
+            <span class="text-secondary">Do you have an account? <a href="/todo/login">Sign in</a></span>
+        </form>
+    </div>
+
+{% endblock %}

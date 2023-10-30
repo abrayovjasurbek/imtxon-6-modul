@@ -1,0 +1,57 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Untree.co">
+
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap4" />
+
+    {% block css %}{% endblock %}
+
+    <title>{% block title %}{% endblock %}</title>
+
+</head>
+
+	<body>
+
+		<!-- Start Header/Navigation -->
+		<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Exam">
+
+			<div class="container">
+				<a class="navbar-brand" href="/">Exam TODO<span></span></a>
+
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarsFurni">
+					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+                        {% url '/home' as home %}
+                        {% url '/login' as login %}
+                        {% url '/register' as register %}
+						<li>
+                                <a class="nav-link" href="/">Home</a>
+                        </li>
+{##}
+                        {% if user.is_authenticated %}
+                        <li>
+                            <a class="nav-link" href="">{{ user.first_name }} {{ user.last_name }}</a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a class="nav-link" href="/todo/register">Login</a>
+                        </li>
+                        </ul>
+                        {% endif %}
+
+
+
+{% block hero_img_wrap %}{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block js %}{% endblock %}
